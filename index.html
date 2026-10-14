@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SkillBarter AI — trade what you know</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- our design system loads AFTER Tailwind so it wins -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Check for file:// protocol CORS restriction and warn if not running on http/https server -->
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', () => {
+        const warning = document.createElement('div');
+        warning.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:#0f172a;color:#f8fafc;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;font-family:system-ui,-apple-system,sans-serif;';
+        warning.innerHTML = `
+          <div style="max-width:32rem;background:#1e293b;border:1px solid #334155;border-radius:1rem;padding:2rem;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
+            <div style="font-size:2.5rem;color:#38bdf8;margin-bottom:1rem;"><i class="fas fa-server"></i></div>
+            <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:.75rem;">Local Web Server Required</h2>
+            <p style="color:#94a3b8;font-size:.95rem;line-height:1.5;margin-bottom:1.5rem;">
+              You opened this file directly via <code style="background:#0f172a;color:#38bdf8;padding:.2rem .4rem;border-radius:.3rem;">file://</code>. Modern web browsers block JavaScript ES modules on the <code style="background:#0f172a;color:#38bdf8;padding:.2rem .4rem;border-radius:.3rem;">file://</code> protocol for security reasons.
+            </p>
+            <div style="background:#0f172a;border:1px solid #334155;border-radius:.5rem;padding:1rem;text-align:left;font-size:.9rem;margin-bottom:1.5rem;">
+              <strong style="color:#f8fafc;display:block;margin-bottom:.5rem;">🚀 How to run with 1 click:</strong>
+              <div style="color:#38bdf8;margin-bottom:.3rem;">• <strong>Windows:</strong> Double-click <code style="color:#fff;background:#1e293b;padding:.1rem .3rem;border-radius:.2rem;">start.bat</code> in this folder.</div>
+              <div style="color:#38bdf8;margin-bottom:.3rem;">• <strong>VS Code:</strong> Right-click <code style="color:#fff;background:#1e293b;padding:.1rem .3rem;border-radius:.2rem;">index.html</code> &rarr; "Open with Live Server".</div>
+              <div style="color:#38bdf8;">• <strong>Terminal:</strong> Run <code style="color:#fff;background:#1e293b;padding:.1rem .3rem;border-radius:.2rem;">npx serve</code> or <code style="color:#fff;background:#1e293b;padding:.1rem .3rem;border-radius:.2rem;">python -m http.server</code></div>
+            </div>
+            <p style="font-size:.8rem;color:#64748b;margin:0;">The app will automatically open at <strong style="color:#94a3b8;">http://localhost:5000</strong>.</p>
+          </div>
+        `;
+        document.body.appendChild(warning);
+      });
+    }
+  </script>
+</head>
+<body>
+  <nav id="navbar" class="nav"></nav>
+  <main id="main-content"></main>
+  <div id="modal-container"></div>
+
+  <!-- Single entry point. main.js pulls in every other module via ES imports. -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
