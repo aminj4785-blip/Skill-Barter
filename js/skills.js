@@ -8,6 +8,7 @@ import { renderModal, closeModal } from './modal.js';
 import { showAuthModal, requireAuth } from './auth.js';
 import { getCachedAverageRating, fetchAverageRating } from './ratings.js';
 import { showProposeSwapModal } from './swaps.js';
+import { showToast } from './toast.js';
 import { openChatModal } from './chat.js';
 
 // A pre-decided list of common skills, grouped by category, so neighbours
