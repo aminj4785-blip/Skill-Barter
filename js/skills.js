@@ -248,6 +248,7 @@ export function renderPostSkillForm() {
     if (!title) {
       statusEl.textContent = 'Please pick a skill or type your own.';
       statusEl.className = 'status-err';
+      showToast('Please pick a skill or type your own.', { type: 'error', title: 'Missing skill' });
       return;
     }
 
@@ -255,12 +256,22 @@ export function renderPostSkillForm() {
     if (!isValidEmail(userEmail)) {
       statusEl.textContent = 'Your account does not have a valid email.';
       statusEl.className = 'status-err';
+      showToast('Your account does not have a valid email.', { type: 'error', title: 'Invalid account' });
       return;
     }
 
     try {
       statusEl.textContent = 'Posting listing...';
       statusEl.className = 'status-ok';
+      // Pop-up notification confirming the listing is live.
+      const intentLabel = selectedIntent === 'teach_only' ? 'teaching offer'
+        : selectedIntent === 'learn_only' ? 'learning request'
+        : 'skill barter';
+      showToast(`Your ${intentLabel} "${title}" is now live in the community.`, {
+        type: 'success',
+        title: 'Skill posted!',
+        duration: 4500
+      });
 
       await addDoc(collection(db, `/artifacts/${appId}/public/data/skills`), {
         title,
@@ -289,6 +300,10 @@ export function renderPostSkillForm() {
       console.error('post skill error', err);
       statusEl.textContent = 'Error posting skill.';
       statusEl.className = 'status-err';
+      showToast('Something went wrong while posting your skill. Please try again.', {
+        type: 'error',
+        title: 'Post failed'
+      });
     }
     setTimeout(() => { if (statusEl) statusEl.textContent = ''; }, 3500);
   });
